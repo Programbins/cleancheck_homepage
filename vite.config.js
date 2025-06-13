@@ -1,9 +1,8 @@
+// vite.config.ts / vite.config.js
 import { fileURLToPath, URL } from "url";
-
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
   resolve: {
@@ -12,20 +11,21 @@ export default defineConfig({
     },
   },
   server: {
-    host: "0.0.0.0", // 내부망 IP 허용
-    port: 5173,      // 기본 포트 (원하는 경우 변경 가능)
-    strictPort: true, // 포트 충돌 시 에러 발생 (선택사항)
-    proxy: {
-      // 프론트엔드에서 '/cleancheck'로 시작하는 모든 요청을 'https://www.cleancheck.org'로 프록시합니다.
-      // 예시: axios.get('/cleancheck/api/data') -> https://www.cleancheck.org/api/data 로 요청
-      '/cleancheck': {
-        target: 'https://www.cleancheck.org', // cleancheck.org 의 주소
-        changeOrigin: true, // 대상 서버의 호스트 헤더를 변경 (CORS 해결에 중요)
-        rewrite: (path) => path.replace(/^\/cleancheck/, ''), // 요청 경로에서 '/cleancheck' 제거 (선택 사항)
-        secure: true, // 대상 서버가 HTTPS인 경우 true로 설정
-        ws: true, // 웹소켓 프록시 활성화 (필요한 경우)
-      },
-      // 다른 프록시 설정이 있다면 여기에 추가할 수 있습니다.
+    host: "0.0.0.0",   // 여전히 모든 IP에서 수신
+    port: 5173,
+    strictPort: true,
+
+    // ① CORS – cleancheck.org 만 허용 (필요 시 배열로 여러 도메인 추가 가능)
+    cors: {
+      origin: "https://cleancheck.org",
+      credentials: true,   // 인증 쿠키/헤더가 필요하다면
+    },
+
+    // ② HMR(핫 모듈 리로드) 클라이언트가 외부 도메인을 사용하도록
+    hmr: {
+      host: "cleancheck.org", // Cloudflare·Nginx 등 프록시 뒤라면 반드시 지정
+      protocol: "wss",        // SSL로 접속할 때는 wss
+      port: 443,              // 프록시된 외부 포트 (443) — 내부는 5173 그대로
     },
   },
 });
