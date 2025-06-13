@@ -11,21 +11,16 @@ export default defineConfig({
     },
   },
   server: {
-    host: "0.0.0.0",   // 여전히 모든 IP에서 수신
+    host: "0.0.0.0",
     port: 5173,
     strictPort: true,
 
-    // ① CORS – cleancheck.org 만 허용 (필요 시 배열로 여러 도메인 추가 가능)
-    cors: {
-      origin: "https://cleancheck.org",
-      credentials: true,   // 인증 쿠키/헤더가 필요하다면
-    },
-
-    // ② HMR(핫 모듈 리로드) 클라이언트가 외부 도메인을 사용하도록
+    // ✅ HMR 설정 — 서버는 내부 포트로, 브라우저는 443(wss) 로 접속
     hmr: {
-      host: "cleancheck.org", // Cloudflare·Nginx 등 프록시 뒤라면 반드시 지정
-      protocol: "wss",        // SSL로 접속할 때는 wss
-      port: 443,              // 프록시된 외부 포트 (443) — 내부는 5173 그대로
+      protocol: "wss",
+      host: "cleancheck.org",
+      clientPort: 443,   // 🔑 브라우저-측 포트만 지정
+      // port: 24678      // (생략 → 기본값: 내부가 듣는 포트)
     },
   },
 });
