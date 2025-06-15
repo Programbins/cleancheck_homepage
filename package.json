@@ -8,8 +8,12 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@mediapipe/camera_utils": "^0.3.1675466862",
+    "@mediapipe/hands": "^0.4.1675469240",
+    "@mediapipe/holistic": "^0.5.1675471629",
     "@popperjs/core": "2.11.5",
     "bootstrap": "5.1.3",
+    "kalman-filter": "^2.3.0",
     "pinia": "2.0.14",
     "prismjs": "^1.30.0",
     "serve": "^14.2.4",
