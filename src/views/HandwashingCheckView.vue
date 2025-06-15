@@ -27,7 +27,7 @@ onUnmounted(() => {
   <Header>
     <div class="page-header min-vh-75" :style="`background-image: url(${vueMkHeader})`" loading="lazy">
       <div class="container"><div class="row"><div class="col-lg-7 text-center mx-auto position-relative">
-        <h1 class="text-white pt-3 mt-n5">Handwashing Check (Demo)</h1>
+        <h1 class="text-white pt-3 mt-n5">Clean Check</h1>
         <p class="lead text-white px-5 mt-3">MediaPipe 기반 손씻기 자율 측정 기능을 체험해보세요.</p>
       </div></div></div>
     </div>
@@ -55,7 +55,7 @@ onUnmounted(() => {
             <div class="card shadow-sm border-0">
               <div class="card-body p-4">
 
-                <h5 class="font-weight-bolder text-primary mb-3">✅ 사용 방법</h5>
+                <h5 class="font-weight-bolder text-primary mb-3">⭐ 사용 방법</h5>
                 <ol class="list-group list-group-numbered mb-5">
                   <li class="list-group-item border-0"><b>시작:</b> '손 씻기 훈련 시작' 버튼을 누르고 웹캠 사용을 허용해 주세요.</li>
                   <li class="list-group-item border-0"><b>준비:</b> 화면의 안내에 따라 양손을 카메라 중앙 하단에 위치시켜 주세요. 약 0.5초간 자세를 유지하면 측정이 자동으로 시작됩니다.</li>
@@ -63,7 +63,7 @@ onUnmounted(() => {
                   <li class="list-group-item border-0"><b>종료:</b> 30초가 지나거나 '종료' 버튼을 누르면 측정이 완료되고 초기 화면으로 돌아갑니다.</li>
                 </ol>
 
-                <h5 class="font-weight-bolder text-primary mb-3">💡 원리 및 특징</h5>
+                <h5 class="font-weight-bolder text-primary mb-3">⭐ 원리 및 특징</h5>
                 <ul class="list-group list-group-flush mb-5">
                   <li class="list-group-item border-0 ps-0"><b>핵심 기술:</b> Google의 MediaPipe Holistic 기술을 사용하여 웹캠 영상에서 실시간으로 양손의 21개 주요 지점(랜드마크)을 추적합니다.</li>
                   <li class="list-group-item border-0 ps-0"><b>판정 로직:</b> 손목과 손가락 관절의 3차원적 위치 관계를 분석하여 손바닥/손등을 구분하고, 양손이 겹쳐 문지르는 동작이 감지되면 해당 부위가 세척된 것으로 판단합니다.</li>

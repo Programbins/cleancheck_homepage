@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from "url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 /**
  * ▷ 외부 프록시(예: Nginx Proxy Manager, Traefik, Caddy)가
@@ -13,7 +14,18 @@ import vue from "@vitejs/plugin-vue";
  *  - 따라서 server.https 설정이나 self‑signed SSL 플러그인은 필요 없습니다.
  */
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), viteStaticCopy({
+      targets: [
+        {
+          // onnxruntime-web 라이브러리의 dist 폴더에 있는 모든 파일을
+          // .wasm 파일만 복사하는 대신, dist 폴더의 모든 파일을 복사합니다.
+          src: 'node_modules/onnxruntime-web/dist/*',
+          // 복사될 위치를 'ort-files'라는 폴더로 지정하여 관리합니다.
+          dest: 'ort-files'
+        }
+      ]
+    })
+  ],
 
   resolve: {
     alias: {

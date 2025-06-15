@@ -1,48 +1,51 @@
 <template>
   <div class="card-container">
-    <button @click="$emit('start')">손 씻기 훈련 시작</button>
+    <button @click="$emit('start')">자율 손 씻기 시작</button>
   </div>
 </template>
 
 <script setup>
-defineEmits(['start'])
+defineEmits(['start']);
 </script>
 
 <style scoped>
+/* ───────── 카드 랩 ───────── */
 .card-container {
-  /* 공통 카드 스타일 */
-  width: 640px;
+  width: 100%;
+  /* 기본 : 4 : 3 비율 유지 */
+  aspect-ratio: 4 / 3;
+  min-height: 300px;
+
   padding: 20px;
-  background-color: #fafafa;
+  background: #fafafa;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
   box-sizing: border-box;
-
-  /* 컨텐츠(버튼)를 중앙 정렬하기 위한 Flex 설정 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  /* ▼▼▼▼▼ 핵심 변경점 ▼▼▼▼▼
-    진행 화면의 최대 높이와 동일하게 고정합니다.
-    (컨테이너 padding 40px + UI패널 약 52px + 간격 16px + 영상 480px = 약 588px)
-  */
-  height: 588px;
+  display: flex; justify-content: center; align-items: center;
 }
 
+/* ───────── 버튼 ───────── */
 button {
   padding: 1rem 2rem;
-  font-size: 1.5rem;
-  font-weight: bold;
-  border: none;
-  background-color: #63B3ED;
-  color: white;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 1.2rem; font-weight: 700;
+  color: #fff; background: #63B3ED;
+  border: none; border-radius: 12px;
+  cursor: pointer; transition: background .3s;
+  white-space: nowrap;
 }
+button:hover { background: #4299E1; }
 
-button:hover {
-  background-color: #4299E1;
+/* ───────── 모바일 (≤480 px) ───────── */
+@media (max-width: 480px) {
+  .card-container {
+    aspect-ratio: auto;  /* 비율 고정 해제 */
+    min-height: auto;    /* 높이 제약 해제 */
+    padding: 14px;
+  }
+  button {
+    width: 100%;
+    font-size: 1rem;
+    padding: .9rem 1.4rem;
+  }
 }
 </style>

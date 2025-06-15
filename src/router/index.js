@@ -25,13 +25,38 @@ import ElTypography from "../layouts/sections/elements/typography/TypographyView
 import PosterView from "../views/PosterView.vue"; // 예시 경로입니다.
 import UVExperimentView from "../views/UVExperimentView.vue"; // 예시 경로입니다.
 import HandwashingCheckView from "../views/HandwashingCheckView.vue"; // 예시 경로입니다.
+import yoloCheckView from "../views/yoloView.vue"; // 예시 경로입니다.
+import HWExperimentView      from "../views/HWExperimentView.vue";
+import MediaPipeTechView     from "../views/MediaPipeTechView.vue";
+import YoloTechView          from "../views/YoloTechView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+      {
+    path: "/research/hw",
+    name: "research-hw",
+    component: HWExperimentView,
+  },
+  // ───────── 기술 메뉴 ─────────
+  {
+    path: "/tech/mediapipe",
+    name: "tech-mediapipe",
+    component: MediaPipeTechView,
+  },
+  {
+    path: "/tech/yolo",
+    name: "tech-yolo",
+    component: YoloTechView,
+  },
      {
       path: "/poster",
       name: "poster",
       component: PosterView,
+    },
+        {
+      path: "/yoloCheck",
+      name: "yoloCheck",
+      component: yoloCheckView,
     },
     {
       path: "/uv-experiment",
